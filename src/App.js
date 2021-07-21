@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import Editor from "./components/Editor";
+import { useState, useEffect } from "react";
+import FileExplorer from "./components/FileExplorer";
+import "./App.css";
+import { Box, Center, Flex } from "@chakra-ui/react";
 
-function App() {
+const App = () => {
+  const [html, setHtml] = useState("");
+  const [css, setCss] = useState("");
+  const [javaScript, setJavaScript] = useState("");
+  const [srcDoc, setSrcDoc] = useState();
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setSrcDoc(`
+      <html>
+        <body>${html}</body>
+        <style>${css}</style>
+        <script>${javaScript}</script>
+      </html>
+    `);
+      return () => clearTimeout(timeout);
+    }, 280);
+  }, [html, css, javaScript]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Flex flexDirection="column">
+      <Box mt={2} mb={2} backgroundColor="blackAlpha.700">
+        <FileExplorer
+          html={html}
+          setHtml={setHtml}
+          javaScript={javaScript}
+          setJavaScript={setJavaScript}
+          css={css}
+          setCss={setCss}
+        />
+      </Box>
+
+      <Center height="35vh" width="100vw" backgroundColor="white">
+        <iframe
+          srcDoc={srcDoc}
+          title="output"
+          sandbox="allow-scripts"
+          width="97%"
+          height="100%"
+          frameBorder="none"
+        />
+      </Center>
+    </Flex>
   );
-}
+};
 
 export default App;
