@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/monokai.css';
 import 'codemirror/mode/xml/xml';
@@ -15,7 +15,6 @@ const Editor = ({language,
                 onChange
                 }) => {
     
-    const [open, setOpen] = useState(true);
 
     const handleChange = (editor, data, value) => {
         onChange(value);

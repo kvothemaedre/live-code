@@ -1,4 +1,3 @@
-import Editor from "./components/Editor";
 import { useState, useEffect } from "react";
 import FileExplorer from "./components/FileExplorer";
 import "./App.css";
@@ -35,7 +34,6 @@ const App = () => {
           setCss={setCss}
         />
       </Box>
-
       <Center height="35vh" width="100vw" backgroundColor="white">
         <iframe
           srcDoc={srcDoc}

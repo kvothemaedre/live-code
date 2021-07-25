@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Editor from "./Editor";
 import {
   Tabs,
@@ -7,9 +6,10 @@ import {
   Tab,
   TabPanel,
   Box,
-  Text,
-  Center,
+  Flex
 } from "@chakra-ui/react";
+import FileSave from "./FileSave";
+
 function FileExplorer({
   html,
   setHtml,
@@ -21,13 +21,16 @@ function FileExplorer({
   return (
     // Used tabs to show file explorer
     <Tabs variant="unstyled" ml={2}>
-      <Box mb = {2}>      
+      <Flex mb = {2} justifyContent="space-between">      
         <TabList width="15vw" color="white" ml = {6}>
           <Tab _selected={{ color: "white", bg: "orange.400" }}>index.html</Tab>
           <Tab _selected={{ color: "white", bg: "orange.400" }}>index.css</Tab>
           <Tab _selected={{ color: "white", bg: "orange.400" }}>index.js</Tab>
         </TabList>
-      </Box>
+        <Box mr={6} mt = {2}>
+          <FileSave html = {html} css = {css} javaScript = {javaScript} />
+        </Box>
+      </Flex>
       <Box ml={6}>
         <hr width="40%"/>
       </Box>
